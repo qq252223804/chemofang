@@ -17,7 +17,7 @@ def send_email():
 	port = 465 # 端口
 	sender = "252223804@qq.com" # 账号
 	shouquan = "rpybibdelqojbgfc" # 授权码  qq邮箱
-	receiver = ["252223804@qq.com","563024145@qq.com"] # 接收人
+	receiver = ["252223804@qq.com"] # 接收人
 
 	# ----------2.编辑邮件的内容------
 
