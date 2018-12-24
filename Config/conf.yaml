@@ -1,0 +1,36 @@
+#coding:utf-8
+
+#数据库配置
+test_db: '{
+  "host":"112.74.192.99",
+  "user":"root",
+  "password":"Ld123456BJ",
+  "db":"test",
+  "port":"3306",
+  "charset":"utf8"}'
+#测试环境host 配置
+app_host: 'http://192.168.31.172:8080'
+
+cms_host: 'http://192.168.31.172:8082'
+
+#车商登陆信息
+delear_info: '{
+  "mobile":"18657738815",
+  "password":"dc483e80a7a0bd9ef71d8cf973673924"}'
+
+#用户登陆信息
+user_info: '{
+  "mobile":"13071863055",
+  "password":"dc483e80a7a0bd9ef71d8cf973673924"}'
+#后台登陆信息
+cms_info: '{"username":18657738815,"password":111111}'
+
+
+#车商,用户登陆headers
+app_headers: '{
+  "version": "2.0.0",
+  "Connection": "keep-alive",
+  "Content-Type": "application/json; charset=utf-8"}'
+
+
+
