@@ -8,9 +8,10 @@ from email.mime.text import MIMEText         #发送文本模块
 from email.mime.multipart import MIMEMultipart # 发送附件模块
 from utx import Log
 
-# 读文件
-file_path = ('E:\\yoyotest\\report\\result.html')
-def send_email():
+# 发送文件路径
+# file_path = ('E:\\chemofang\\Report_html\\测试报告.html')
+
+def send_email(file_path):
 	# ----------1.跟发件相关的参数------
 	# smtpserver  # 发件服务器
 	smtpserver = "smtp.qq.com"
@@ -55,6 +56,8 @@ def send_email():
 		# print(e)
 		Log().warning('邮件发送失败:%s'%e)
 
-send_email()
+# send_email()
+
+
 
 

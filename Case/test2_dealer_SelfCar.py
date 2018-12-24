@@ -71,7 +71,7 @@ class Dingjia(unittest.TestCase):
 		lujing='/cms/dealerCarEnquiry/getDetail/'+sq_id
 		# print(lujing)
 		res=self.session.get(self.cms_host+lujing)
-		response=json.loads(res.text)
+		response=json.loads(res.text)                 #res.text 为str格式 json。loads（）将str-dict
 		
 		self.assertTrue(str(response['code']) == '200', msg='状态不对')
 		self.assertIn('success', response['msg'], msg='a不在b中')
@@ -145,10 +145,11 @@ class Dingjia(unittest.TestCase):
 		# data = json.dumps(datas)  #所以必须使用json.dumps 变为 json数据类型 或者下面json=datas也行
 		# print(data)
 		# print(type(data))
-		# #
+	
 		headers=self.app_headers
 		res=requests.put(url,json=datas,headers=headers)
 		print(res.json())
+	
 
 
 

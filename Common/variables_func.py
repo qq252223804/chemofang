@@ -41,13 +41,23 @@ def dealer_Session():
 		config = yaml.load(r)  # 解析并读写yaml文件
 		lujing = '/dealer/login'
 		host =config['app_host']
-		datas =json.loads(config['delear_info'])    #将取出来的str格式转变为dict eval()也可以
-		headers =eval(config['app_headers'])      #将取出来的str格式转变为dict
+		datas =config['delear_info']   #将取出来的str格式转变为dict eval()也可以
+		headers =config['app_headers']      #将取出来的str格式转变为dict
 		res =RunMethod().run_main('post', host, lujing,datas,headers)
 		# print(res)
 		write_yaml_variable("X-SessionToken-With",res['data']['token'])
 def user_Session():
-	pass
+	with open('E:\\chemofang\\Config\\conf.yaml', "r", encoding="utf-8") as r:
+		config = yaml.load(r)  # 解析并读写yaml文件
+		lujing = '/users/loginByPwd'
+		host =config['app_host']
+		datas =config['user_info']
+		headers =config['app_headers']
+		res =RunMethod().run_main("post",host,lujing,datas,headers)
+		# print(res)
+	
+		write_yaml_variable("X-SessionToken-With", res['data'])
+
 
 def cms_cookies():
 	"""
@@ -114,8 +124,10 @@ if __name__ == "__main__":
 	# write_yaml_variable("BBB",2442)
 	# print(get_yaml_variable("BBB"))
 
-	# dealer_Session()
+
 	# print(get_yaml_variable("X-SessionToken-With"))
 	# cms_cookies()
-	qiniu_uploadToken1()
-	qiniu_uploadToken2()
+	# qiniu_uploadToken1()
+	# qiniu_uploadToken2()
+	dealer_Session()
+	# user_Session()

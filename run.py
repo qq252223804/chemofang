@@ -22,5 +22,5 @@ if __name__ == '__main__':
     runner.add_case_dir(r"Case")
     runner.run_test(report_title='接口自动化测试报告')
 
-    # send_email()
+    send_email()
     

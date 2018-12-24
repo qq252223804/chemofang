@@ -8,7 +8,7 @@ import requests
 import yaml,json
 
 from Base.runmethod import RunMethod
-from Common.variables_func import dealer_Session, get_yaml_variable
+from Common.variables_func import user_Session, get_yaml_variable
 from utx import Log
 
 
@@ -22,27 +22,27 @@ class order(unittest.TestCase):
 	@classmethod  # 调用类变量时需加@classmethod
 	def setUpClass(cls):
 		Log().info("正在执行:登陆测试")
-		dealer_Session()  # 登陆写入session
+
 		# token=get_yaml_variable("X-SessionToken-With")
 		# print("登陆后的token为：%s"%token)
-		
+		user_Session()
 		cls.app_host = cls.app_host
-		cls.cms_host = cls.cms_host
+		cls.User_session = {"X-SessionToken-With": get_yaml_variable("X-SessionToken-With")}
 		
-		cls.Dealer_session = {"X-SessionToken-With": get_yaml_variable("X-SessionToken-With")}
-		cls.app_headers.update(cls.Dealer_session)
-		
-	def test_check_order(cls):
+		cls.app_headers.update(cls.User_session)
+		print(cls.app_headers)
+	def test_check_order(self):
 		"""
 		检查订单状态
 		:return:
 		"""
 		Log().debug("正在执行:检查订单状态")
-		lujing="/loan/order/check"
-		# print(cls.app_host+lujing)
-		# print(cls.app_headers)
-		res=RunMethod.run_main('get',cls.app_host,lujing,cls.app_headers)
+		lujing="/loan/order/check/"
+		headers=self.app_headers
+		res=RunMethod().run_main("get",self.app_host,lujing,headers=headers)
+		self.assertEqual(res["code"],200)
 		print(res)
+
 		
 		
 
