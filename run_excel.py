@@ -8,11 +8,14 @@ import time
 from Common import HTMLTestRunner_api
 import os
 
+from Common.Email import send_email
+
 curpath = os.path.dirname(os.path.realpath(__file__))
 report_path = os.path.join(curpath, "report_excel")
 if not os.path.exists(report_path): os.mkdir(report_path)
-
+#执行用例路径
 case_path = os.path.join(curpath, "Case_excel")
+
 
 def add_case(casepath=case_path, rule="test*_*.py"):
     '''加载所有的测试用例'''
@@ -31,10 +34,12 @@ def run_case(all_case, reportpath=report_path):
                                                verbosity=2,
                                                title="测试报告",
                                                description="用例执行情况")
-
+    #发送报告的路径
+    file_path=htmlreport
     # 调用add_case函数返回值
     runner.run(all_case)
     fp.close()
+    send_email(file_path)
     
 
 if __name__ == "__main__":
