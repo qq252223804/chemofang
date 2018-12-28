@@ -57,9 +57,8 @@ class RunMethod():
 				# print(res)
 			else:
 				res=requests.get(url=url,data=data,verify=False)
+				
 			response = res.json()        #res.text 为str格式 json。loads（）将str-dict、
-			# print(response)
-
 			if response['code'] != 200:  # 当返回的不为200时记录到log中
 				print("oK")
 				Log().info(res.json())
@@ -85,3 +84,4 @@ if __name__ == '__main__':
 	headers={"version":"2.0.0","Connection":"keep-alive","Content-Type":"application/json; charset=utf-8"}
 	res=run.run_main('post',host,lujing,datas,headers)
 	print(res)
+	print(type(res))
