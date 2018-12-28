@@ -28,7 +28,7 @@ cms_info: '{"username":18657738815,"password":111111}'
 
 #车商,用户登陆headers
 app_headers: '{
-  "version": "2.0.0",
+  "version": "2.0.1",
   "Connection": "keep-alive",
   "Content-Type": "application/json; charset=utf-8"}'
 
