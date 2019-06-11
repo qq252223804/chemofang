@@ -33,7 +33,7 @@ class RunMethod:
 			response =res.json()   #  将返回的数据转换为json格式的 字典
 			# print(type(response))
 			# print(response['code'])
-			if 	response['code'] != 200:      #当返回的不为200时记录到log中
+			if 	response['code'] != 0:      #当返回的不为200时记录到log中
 				Log().info(res.json())
 			return   response
 	
@@ -59,7 +59,7 @@ class RunMethod:
 				res=requests.get(url=url,data=data,verify=False)
 				
 			response = res.json()        #res.text 为str格式 json。loads（）将str-dict、
-			if response['code'] != 200:  # 当返回的不为200时记录到log中
+			if response['code'] != 0:  # 当返回的不为200时记录到log中
 				print("oK")
 				Log().info(res.json())
 			return response
@@ -85,3 +85,13 @@ if __name__ == '__main__':
 	res=run.run_main('post',host,lujing,datas,headers)
 	print(res)
 	print(type(res))
+
+	# run = RunMethod()  # 实例化
+	# host = 'https://service.66ifuel.com'
+	# lujing = '/customer/v1/member/login'
+	# datas = {"phone": "18657738815", "password": "dc483e80a7a0bd9ef71d8cf973673924"}
+	#
+	# headers = {"Content-Type": "application/json; charset=utf-8"}
+	# res = run.run_main('post', host, lujing, datas, headers)
+	# print(res)
+	#
