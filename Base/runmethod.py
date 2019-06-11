@@ -6,7 +6,7 @@ import json
 from utx import Log
 
 
-class RunMethod():
+class RunMethod:
 
 	def post_main(self,host,lujing,data,headers=None):      #host 为基础url ，lujing为路径
 		try:
