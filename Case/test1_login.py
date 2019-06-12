@@ -23,7 +23,7 @@ class login(unittest.TestCase):
 		pass
 	@data({"mobile": "18657738815", "password": "dc483e80a7a0bd9ef71d8cf973673924"},
 	      {"mobile": "13071863055", "password": "dc483e80a7a0bd9ef71d8cf973673924"},unpack=False)
-	def test_dealer_login(self,datas):
+	def test_dealer_login(self,data):
 		'''
 		车商登陆:密码
 		:return:session
@@ -35,7 +35,7 @@ class login(unittest.TestCase):
 		# datas = {"mobile": "18657738815", "password": "dc483e80a7a0bd9ef71d8cf973673924"}
 		headers = {"version": "2.0.0", "Connection": "keep-alive", "Content-Type": "application/json; charset=utf-8"}
 
-		res =self.run.run_main('post',host,lujing,data=datas,headers=headers)
+		res =self.run.run_main('post',host,lujing,data=data,headers=headers)
 		self.assertTrue(str(res['code']) == '200', msg='状态不对')
 		self.assertIn('success', res['msg'], msg='a不在b中')
 		print(res)
