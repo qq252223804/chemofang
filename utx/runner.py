@@ -5,6 +5,8 @@ import unittest
 from utx.log import Log
 from utx.BSTestRunner import BSTestRunner
 
+curpath = os.path.dirname(os.path.realpath(__file__))
+case_path = os.path.join(curpath, "Case")
 
 class TestRunner:
 
@@ -38,10 +40,11 @@ class TestRunner:
             os.mkdir("report")
 
         report_dir = os.path.abspath("report")
-        suite = unittest.TestSuite()
+        # suit=unittest.defaultTestLoader.discover('Case', pattern='test*_*.py')
+        suit = unittest.TestSuite()
         for case_path in self.case_dirs:
-            suite.addTests(unittest.TestLoader().discover(case_path))
-        BSTestRunner(report_dir=report_dir, report_title=report_title).run(suite)
+            suit.addTests(unittest.TestLoader().discover(case_path))
+        BSTestRunner(report_dir=report_dir, report_title=report_title).run(suit)
 
         print("测试完成，请查看报告")
         os.system("start report")
