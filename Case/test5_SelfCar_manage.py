@@ -49,6 +49,7 @@ class Selfcar(unittest.TestCase):
 		"""
 		mysql = MysqlUtil()
 		sql = "select * from dealer_car where car_info_id= '5a5ec113943d0b515a43b33a' ORDER BY id DESC"
+		
 		mysql.mysql_execute(sql, number='one')
 		id=mysql.mysql_getrows(sql,number='one')[0]
 		# print(id)
@@ -59,7 +60,6 @@ class Selfcar(unittest.TestCase):
 		self.assertEqual("success", response['msg'], msg='接口返回错误')
 		print(response)
 
-	#
 
 if __name__ == "__main__":
 

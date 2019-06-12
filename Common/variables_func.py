@@ -4,7 +4,7 @@ import yaml
 import json
 import requests, hashlib
 from Base.runmethod import RunMethod
-
+yaml.warnings({'YAMLLoadWarning': False})
 def write_yaml_variable(key=None,value=None):
 	"""
 	把返回的变量值写入到yaml文件-yaml中已存在key
