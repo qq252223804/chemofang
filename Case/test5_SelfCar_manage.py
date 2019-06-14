@@ -7,8 +7,8 @@ import unittest
 import yaml
 import json
 
-from Common.SQL_execute import MysqlUtil
-from Common.variables_func import dealer_Session, cms_cookies
+from Common.SQL_execute import *
+from Common.variables_func import cms_cookies
 from utx import Log
 
 
@@ -17,11 +17,10 @@ class Selfcar(unittest.TestCase):
 		config = yaml.load(r)  # 解析并读写yaml文件
 		cms_host = config['cms_host']
 
-	
-	@classmethod  # 调用类变量时需加@classmethod
+	#遇到setUpClass 必须加
+	@classmethod
 	def setUpClass(cls):
 		Log().info("正在执行:登陆测试")
-		dealer_Session()  # 登陆写入session
 		# token=get_yaml_variable("X-SessionToken-With")
 		# print("登陆后的token为：%s"%token)
 		cls.cms_host = cls.cms_host
@@ -47,11 +46,11 @@ class Selfcar(unittest.TestCase):
 		下架车辆
 		:return:
 		"""
-		mysql = MysqlUtil()
+
 		sql = "select * from dealer_car where car_info_id= '5a5ec113943d0b515a43b33a' ORDER BY id DESC"
 		
-		mysql.mysql_execute(sql, number='one')
-		id=mysql.mysql_getrows(sql,number='one')[0]
+		mysql_execute(sql, number='one')
+		id=mysql_getrows(sql,number='one')[0]
 		# print(id)
 		lujing = "/cms/dealer/car/unshelve/"+id
 		res = self.session.post(self.cms_host + lujing)
