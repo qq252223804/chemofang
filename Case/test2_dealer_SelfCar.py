@@ -51,6 +51,7 @@ class Dingjia(unittest.TestCase):
 		       "invoicePrice":"100008",
 		       "price":"388.80","carNameplateImage":"","dealerCarId":"5c1b70d6cec76d6f353db12d"}
 		lujing='/carmall/applyDealerCarEnquiry/apply'
+		lujing='/carmall/applyDealerCarEnquiry/apply'
 		res=RunMethod().run_main('post',self.app_host,lujing,datas,	self.app_headers)
 		write_yaml_variable("data", res['data'])
 		print( res['data'])
