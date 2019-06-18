@@ -29,7 +29,6 @@ def skip(reason):
     # return wrap
     def wrap(func):
         return unittest.skip(reason)(func)
-
     return wrap
 
 
@@ -241,7 +240,6 @@ class _TestCase(unittest.TestCase, metaclass=Meta):
 
 raw_unittest_testcase = unittest.TestCase
 unittest.TestCase = _TestCase
-
 
 def stop_patch():
     unittest.TestCase = raw_unittest_testcase

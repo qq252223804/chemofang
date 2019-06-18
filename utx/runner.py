@@ -1,12 +1,15 @@
 #! /usr/bin/env python
 # -*- coding: UTF-8 -*-
-import os
+import datetime
+import os,time
 import unittest
 from utx.log import Log
 from utx.BSTestRunner import BSTestRunner
 
-curpath = os.path.dirname(os.path.realpath(__file__))
-case_path = os.path.join(curpath, "Case")
+
+# curpath = os.path.dirname(os.path.realpath(__file__))
+# case_path = os.path.join(curpath, "Case")
+# print(case_path)
 
 class TestRunner:
 
@@ -36,15 +39,14 @@ class TestRunner:
         if not self.case_dirs:
             raise Exception("请先调用add_case_dir方法，添加测试用例文件夹")
 
-        if not os.path.exists("report"):
-            os.mkdir("report")
+        # report_dir = os.path.abspath("report")
+        report_path = os.path.join(os.path.dirname(os.getcwd()), "report")
+        if not os.path.exists(report_path): os.mkdir(report_path)
 
-        report_dir = os.path.abspath("report")
         # suit=unittest.defaultTestLoader.discover('Case', pattern='test*_*.py')
         suit = unittest.TestSuite()
         for case_path in self.case_dirs:
             suit.addTests(unittest.TestLoader().discover(case_path))
-        BSTestRunner(report_dir=report_dir, report_title=report_title).run(suit)
-
+        BSTestRunner(report_dir=report_path, report_title=report_title).run(suit)
         print("测试完成，请查看报告")
-        os.system("start report")
+
