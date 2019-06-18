@@ -3,14 +3,14 @@
 # @Author : taojian 
 # @File : Email.py
 # coding:utf-8
-import smtplib
+import smtplib,os,time
 from email.mime.text import MIMEText         #发送文本模块
 from email.mime.multipart import MIMEMultipart # 发送附件模块
 from utx import Log
 
-# 发送文件路径
-# file_path = ('E:\\chemofang\\Report_html\\测试报告.html')
 
+# file_path = ('{}').format(os.path.join(os.path.dirname(os.getcwd()),'Report_html')+'\conf.yaml')
+# print(file_path)
 def send_email(file_path):
 	# ----------1.跟发件相关的参数------
 	# smtpserver  # 发件服务器
@@ -25,7 +25,7 @@ def send_email(file_path):
 	with open (file_path,'rb') as fb:
 		mail_body=fb.read()
 	# body='<p>这个是发送的个人自动化邮件</p>'
-	subject="主题:车魔方接口测试报告"
+	subject="主题:66ifuel接口测试报告"
 	msg = MIMEMultipart()
 	msg['from'] = sender
 	msg['to'] = ";".join(receiver)  #发送多个接收人
@@ -56,7 +56,7 @@ def send_email(file_path):
 		# print(e)
 		Log().warning('邮件发送失败:%s'%e)
 
-# send_email()
+# send_email(file_path)
 
 
 
